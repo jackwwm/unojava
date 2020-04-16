@@ -13,10 +13,15 @@ public class Player {
 	public ArrayList<Card> getCards(){
 		return handCards;
 	}
+	
+	public void emptyHand() {
+		handCards.clear();
+	}
 
 	public void removeCard(Card c) {
 		handCards.remove(c);
 		cardsInDeck --;
+		CardTest.checkWin();
 	}
 
 	public void addCard(Card c) {

@@ -118,7 +118,7 @@ public class Card implements Comparable<Card> {
 	}
 
 	public void action() {
-		if(this.colorCode == 'a') {
+		if(this.colorCode == 'a') { //Color ANY
 			CardTest.displayWildColors();
 			if(this.symbolCode == "4") {
 				for(int i = 0; i<4;i++) { //add 2 cards
@@ -128,9 +128,9 @@ public class Card implements Comparable<Card> {
 					
 					}
 			}
-		}else if(this.symbolCode == "s") {
+		}else if(this.symbolCode == "s") { //Skip
 			CardTest.skipPlayerTurn();
-		}else if(this.symbolCode == "d") {
+		}else if(this.symbolCode == "d") { //Draw
 			CardTest.changePlayer(); //change player
 			
 			for(int i = 0; i<2;i++) { //add 2 cards
@@ -144,7 +144,6 @@ public class Card implements Comparable<Card> {
 		}else if(this.symbolCode =="r") {
 			//TODO
 			CardTest.reverseOrder();
-			//CardTest.changePlayer();
 		}
 		else CardTest.changePlayer();
 	}
@@ -198,7 +197,7 @@ public class Card implements Comparable<Card> {
 		double randomX = Math.random() * (upper-lower)+lower;
 		double randomY = Math.random() * (upper-lower)+lower;
 		double randomAngle = Math.random() * (upperAngle-lowerAngle)+lowerAngle;
-		System.out.println(randomX);
+
 		cardFace.setTranslateX(randomX);
 		cardFace.setTranslateY(randomY);
 		cardFace.setRotate(randomAngle);

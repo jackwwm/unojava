@@ -23,9 +23,7 @@ public class ImageButton implements EventHandler<MouseEvent> {
 			});
 		i.setOnMouseClicked(e -> {
 			CardTest.currentPlayer.addCard(CardTest.deck.drawCard());
-			//Screen.Refresh();
-			//System.out.println("Pile: " + GameController.pile.size() + "\n Deck: " + GameController.deck.size() + "\n");
-		});
+			});
 	}
 
 }

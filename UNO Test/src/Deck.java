@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
+import javax.swing.JOptionPane;
+
 public class Deck{
 
 	private ArrayList<Card> cards;
@@ -13,6 +15,7 @@ public class Deck{
 	
 	public void resetDeck() {
 		//Create number cards (76 cards)
+		if(cardsInDeck!=0)emptyDeck();
 		for(int col = 0; col < 4 ;col++) {
 			//color values - 1 because the last color is "any" reserved for wildcards
 
@@ -40,19 +43,35 @@ public class Deck{
 		//Collections.shuffle(cards);
 	}
 	
+	public void emptyDeck() {
+		cards.clear();
+	}
 	
 	public void shuffleCards() {
         Collections.shuffle(cards); //shuffle cards
 	}
 	public Card drawCard() {
 		if(cardsInDeck == 0) {
+			if(CardTest.dPile.cardsInDeck == 1) {
+				System.out.println("No cards to be put into drawing deck!");
+				return null;
+			}
+			
 			System.out.println("Deck is empty!");
-			return null;
+			int reshuffleDialog = JOptionPane.showConfirmDialog(null,
+					"Deck ran out of cards! \nWill take in Discard Pile cards and reshuffle.", "Out of Cards", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE);
+			System.out.println(reshuffleDialog);
+			
+			while(CardTest.dPile.getCardsInDeck()>1) {
+				CardTest.deck.addCard(CardTest.dPile.drawCard());
+			}	
+			CardTest.deck.shuffleCards();
 		}
 		cardsInDeck--;
 		return cards.remove(0);
 	}
 
+	
 	public int getCardsInDeck() {
 		return cardsInDeck;
 	}
@@ -67,7 +86,7 @@ public class Deck{
 	}
 	
 	public Card getTopCard() {
-		return cards.get(cardsInDeck-1);
+			return cards.get(cardsInDeck-1);
 	}
 }
 
